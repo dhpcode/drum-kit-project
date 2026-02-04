@@ -3,6 +3,16 @@ const buttons = document.querySelectorAll('button');
 
 function isPressed(t) {
 
+  const element = document.querySelector(`.${t}`);
+  if (element) {
+    element.classList.add('pressed');
+
+    setTimeout(() => {
+      element.classList.remove('pres`sed')
+    }, 100);
+  }
+
+
 
   switch (t) {
     case 'w':
@@ -32,31 +42,13 @@ function isPressed(t) {
 buttons.forEach(btn => {
   btn.addEventListener('click', (e) => {
     let text = e.target.textContent;
-    let element = document.querySelector(`.${text}`)
-    if (element) {
-      isPressed(text);
-      element.classList.add('pressed')
-    }
-
-    setTimeout(() => {
-      element.classList.remove('pressed')
-    }, 1000);
-
+    isPressed(text);
   })
 })
 
 
 
 document.addEventListener('keydown', (e) => {
-  const char = e.key;
-  const element = document.querySelector(`.${char}`);
-  if (element) {
-    isPressed(char);
-    element.classList.add('pressed')
-  }
-
-  setTimeout(() => {
-    element.classList.remove('pressed')
-  }, 1000);
-
+  const text = e.key;
+  isPressed(text);
 })
