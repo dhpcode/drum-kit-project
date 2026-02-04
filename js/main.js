@@ -31,8 +31,16 @@ function isPressed(t) {
 
 buttons.forEach(btn => {
   btn.addEventListener('click', (e) => {
-    let text = e.target.textContent;
-    isPressed(text);
+    let element = document.querySelector(`.${text}`)
+    if (element) {
+      isPressed(text);
+      element.classList.add('pressed')
+    }
+
+    setTimeout(() => {
+      element.classList.remove('pressed')
+    }, 1000);
+
   })
 })
 
